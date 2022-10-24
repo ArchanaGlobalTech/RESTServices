@@ -101,8 +101,6 @@ public class MenuService {
                                     //System.out.print(menu.cashValue + "t");
                                     break;
                                 case 3:
-                                    menu.setMenuItemPrice((int) cell.getNumericCellValue());
-                                    //System.out.print(menu.cashValue + "t");
                                     break;
                                 default:
                                     throw new IllegalStateException("Unexpected NUMERIC Cell Value in the Spreadsheet :" + bsIterator + " and " + cell.getColumnIndex() + " Value = " + cell.getNumericCellValue());

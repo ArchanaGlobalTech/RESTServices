@@ -11,31 +11,21 @@ import java.sql.Date;
 @Entity
 @Data
 @Component
-@Table(name = "menu_item_table")
-public class Menu {
+@Table(name = "category_table")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "menu_item_id")
-    private int menuItemId;
-    @Column(name = "menu_item_name")
-    private String menuItemName;
+    @Column(name = "category_id")
+    private int categoryId;
     @Column(name = "menu_item_category")
     private String menuItemCategory;
     @Column(name = "menu_item_sub_category")
     private String menuItemSubCategory;
-    @Column(name = "menu_item_description")
-    private String menuItemDescription;
-    @Column(name = "menu_today_special_ind")
-    private String menuTodaySpecialInd;
-    @Column(name = "menu_best_seller_ind")
-    private String menuBestSellerInd;
     @Column(name = "menu_image_file_name")
     private String menuImageFileName;
-    @Column(name = "menu_availability_ind")
-    private String menuAvailabilityInd;
-    @Column(name = "primary_in_categoty")
-    private String primaryInCategory;
+    @Column(name = "menu_item_count")
+    private Integer menuItemCount;
     @CreatedDate
     @Column(name = "date_created")
     private Date dateCreated;
