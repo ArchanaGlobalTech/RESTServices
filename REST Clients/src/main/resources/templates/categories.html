@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width initial-scale=1" />
-    <title th:text="${metahome.titleText}"></title>
+    <title>Archana Sweets</title>
     <!-- CSS only -->
     <!-- Latest compiled and minified CSS -->
     <link
@@ -121,62 +121,36 @@
       ></div>
     </div>
     <div id="main-content" class="container">
-      <div class="jumbotron">
-        <!-- img-responsive is from bootstrap and it will ensure that the image realigns based on the width and it is visible only when the browser is xs -->
-        <img
-          th:src="@{/img/jumbotran_767.jpg}"
-          alt="Picture of restaurant"
-          class="img-responsive visible-xs"
-        />
-        <h2
-          id="jumbotran-main-text"
-          class="visible-lg visible-md visible-sm"
-          th:text="${metahome.centerCarousalHeader}"
-        ></h2>
-
-        <h3 id="jumbotran-sub-text" class="visible-lg visible-md">
-          <i class="fa fa-truck service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine1}"></p>
-          <i class="fa fa-coffee service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine2}"></p>
-          <i class="fa fa-award service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine3}"></p>
-          <i class="fa fa-table service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine4}"></p>
-        </h3>
+      <h2
+        id="menu-categories-title"
+        class="text-center"
+        th:text="${pageTitle}"
+      ></h2>
+      <div class="text-center">
+        Availability of fruit based sweets and savouries are subject to
+        seasonality of ingredients.
       </div>
-      <div id="home-tiles" class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <a th:href="@{/sweetpeople/sweets}"
-            ><div id="menu-tile">
-              <span th:text="${metahome.tileHeader1}"></span></div
-          ></a>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <a th:href="@{/sweetpeople/savouries}"
-            ><div id="specials-tile">
-              <span th:text="${metahome.tileHeader2}"></span></div
-          ></a>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <a href="https://goo.gl/maps/6bSQUcCFTbujkNzf7" target="_blank">
-            <div id="map-tile">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2213.2103858688924!2d80.22968629974028!3d13.038498079183693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266ff599f70c7%3A0x69987ecfa55fc100!2sArchana%20Sweets%20Restaurant!5e0!3m2!1sen!2sin!4v1665232073586!5m2!1sen!2sin"
-                width="100%"
-                height="250"
-                frameborder="0"
-                style="border: 0"
-                allowfullscreen
-              ></iframe>
-              <span th:text="${metahome.tileHeader3}"></span>
+      <section th:if="${not #lists.isEmpty(categories)}" class="row">
+        <div
+          th:each="category : ${categories}"
+          class="col-md-3 col-sm-4 col-xs-6 col-xxs-12"
+        >
+          <a
+            th:href="@{/sweetpeople/items(menuItemSubCategory=${category.menuItemSubCategory})}"
+          >
+            <div class="category-tile">
+              <img
+                width="200"
+                height="200"
+                th:src="@{${category.menuImageFileName}}"
+                th:alt="${category.menuItemSubCategory}"
+              />
+              <span th:text="${category.menuItemSubCategory}"></span>
             </div>
           </a>
         </div>
-      </div>
-      <!-- End of #home-tiles -->
+      </section>
     </div>
-
     <!-- End of #Main Content -->
     <footer class="panel-footer">
       <div class="container">

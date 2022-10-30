@@ -7,6 +7,7 @@ import org.archanasweets.RESTEndPoints.Domain.CatSummary;
 import org.archanasweets.RESTEndPoints.Entity.Category;
 import org.archanasweets.RESTEndPoints.Entity.Menu;
 import org.archanasweets.RESTEndPoints.Entity.Pricing;
+import org.archanasweets.RESTEndPoints.Repo.CartRepo;
 import org.archanasweets.RESTEndPoints.Repo.CategoryRepo;
 import org.archanasweets.RESTEndPoints.Repo.MenuRepo;
 import org.archanasweets.RESTEndPoints.Repo.PricingRepo;
@@ -43,6 +44,9 @@ public class MenuLoader implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     CategoryRepo categoryRepo;
+
+    @Autowired
+    CartRepo cartRepo;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -127,7 +131,14 @@ public class MenuLoader implements ApplicationListener<ApplicationReadyEvent> {
                     }
                 }
             }
-
+            menu.setMenuAvailabilityInd("Y");
+            menu.setMenuTodaySpecialInd("Y");
+            menu.setMenuBestSellerInd("Y");
+            menu.setDateCreated(date);
+            menu.setDateUpdated(date);
+            menu.setUserCreated("Archana");
+            menu.setUserUpdated("Sweets");
+            menu.setPrimaryInCategory("N");
             menuItems.add(menu);
             menuRepo.save(menu);
             System.out.println("ID After: " + menu.getMenuItemId());
@@ -159,7 +170,7 @@ public class MenuLoader implements ApplicationListener<ApplicationReadyEvent> {
             e.printStackTrace();
         }
 
-        System.out.println(catSummaryList);
+        System.out.println(cartRepo.findAll());
         //menuRepo.saveAll(menuItems);
     }
 }

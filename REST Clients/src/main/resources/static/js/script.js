@@ -212,7 +212,7 @@ window.addEventListener("click", (event) => {
       numberInBasket = " - " + orderList[objFound].quantity;
     }
     document.getElementById("cartIndicator_" + myArray[1]).innerHTML =
-      `<a href="cart.html">
+      `<a th:href="@{/sweetpeople/cart}">
 
     <div>
         <span id="number-of-items-incart` +

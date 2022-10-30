@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width initial-scale=1" />
-    <title th:text="${metahome.titleText}"></title>
+    <title>Archana Sweets</title>
     <!-- CSS only -->
     <!-- Latest compiled and minified CSS -->
     <link
@@ -105,6 +105,99 @@
       </nav>
     </header>
     <div id="complete-body-under-nav"></div>
+    <h2
+      id="menu-categories-title"
+      class="text-center"
+      th:text="${metahome.categoryHeader}"
+    ></h2>
+    <div class="text-center" th:text="${metahome.categoryMessage}"></div>
+    <!--           ------------------------------------------------------------                   -->
+
+    <section th:if="${not #lists.isEmpty(items)}" class="row">
+      <div th:each="item : ${items}" class="menu-item-tile col-md-6">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="menu-item-photo">
+              <span id="cartIndicator"></span>
+              <img
+                class="img-responsive"
+                width="250"
+                height="150"
+                th:src="@{${item.menuImageFileName}}"
+                th:alt="${item.menuItemSubCategory}"
+              />
+            </div>
+          </div>
+          <div class="menu-item-description col-sm-7">
+            <h3 class="menu-item-title" th:text="${item.menuItemName}"></h3>
+            <p
+              class="menu-item-details"
+              th:text="${item.menuItemDescription}"
+            ></p>
+            <p class="menu-item-pricing">
+              <span id="packsize"> Pack Size : </span>
+              <select name="PackSize" id="PackSize_">
+                <option value="Object.keys(menu[i].pricing)[0]">250 gm</option>
+                <option
+                  value="
+  Object.keys(menu[i].pricing)[1]"
+                >
+                  500 gm
+                </option>
+                <option value="Object.keys(menu[i].pricing)[2]">1 KG</option>
+              </select>
+            </p>
+            <p class="menu-item-pricing">
+              <span id="quantityofsweetpacks"> Quantity : </span>
+              <select name="quantityselected" id="quantityselected_">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="100">100</option>
+              </select>
+            </p>
+            <p class="calculated-price">
+              <span id="pricelabelofsweetpacks"> Price : </span>
+              <span id="priceofsweetpacks"> ₹ 500 </span>
+            </p>
+            <div id="add-to-cart-division">
+              <button
+                id="placeorder_"
+                type="button"
+                class="btn btn-primary mx-auto"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--           ------------------------------------------------------------                   
+      <div
+        th:each="item : ${items}"
+        class="col-md-3 col-sm-4 col-xs-6 col-xxs-12"
+      >
+        <a
+          th:href="@{/sweetpeople/items(menuItemSubCategory=${category.menuItemSubCategory})}"
+        >
+          <div class="category-tile">
+            <img
+              width="200"
+              height="200"
+              th:src="@{${category.menuImageFileName}}"
+              th:alt="${category.menuItemSubCategory}"
+            />
+            <span th:text="${category.menuItemSubCategory}"></span>
+          </div>
+        </a>
+      </div> -->
+    </section>
+
     <div id="contact-region">
       <div id="call-btn" class="visible-xs visible-sm">
         <a
@@ -120,63 +213,32 @@
         th:text="${metahome.telephoneNumberText}"
       ></div>
     </div>
-    <div id="main-content" class="container">
-      <div class="jumbotron">
-        <!-- img-responsive is from bootstrap and it will ensure that the image realigns based on the width and it is visible only when the browser is xs -->
-        <img
-          th:src="@{/img/jumbotran_767.jpg}"
-          alt="Picture of restaurant"
-          class="img-responsive visible-xs"
-        />
-        <h2
-          id="jumbotran-main-text"
-          class="visible-lg visible-md visible-sm"
-          th:text="${metahome.centerCarousalHeader}"
-        ></h2>
+    <div id="main-content" class="container"></div>
+    <h2 id="menu-categories-title" class="text-center"></h2>
+    <div class="text-center">These items are available all during the day</div>
 
-        <h3 id="jumbotran-sub-text" class="visible-lg visible-md">
-          <i class="fa fa-truck service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine1}"></p>
-          <i class="fa fa-coffee service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine2}"></p>
-          <i class="fa fa-award service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine3}"></p>
-          <i class="fa fa-table service-icon"></i>
-          <p th:text="${metahome.centerCarousalLine4}"></p>
-        </h3>
-      </div>
-      <div id="home-tiles" class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <a th:href="@{/sweetpeople/sweets}"
-            ><div id="menu-tile">
-              <span th:text="${metahome.tileHeader1}"></span></div
-          ></a>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <a th:href="@{/sweetpeople/savouries}"
-            ><div id="specials-tile">
-              <span th:text="${metahome.tileHeader2}"></span></div
-          ></a>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <a href="https://goo.gl/maps/6bSQUcCFTbujkNzf7" target="_blank">
-            <div id="map-tile">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2213.2103858688924!2d80.22968629974028!3d13.038498079183693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266ff599f70c7%3A0x69987ecfa55fc100!2sArchana%20Sweets%20Restaurant!5e0!3m2!1sen!2sin!4v1665232073586!5m2!1sen!2sin"
-                width="100%"
-                height="250"
-                frameborder="0"
-                style="border: 0"
-                allowfullscreen
-              ></iframe>
-              <span th:text="${metahome.tileHeader3}"></span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- End of #home-tiles -->
+    <!--Iteration of items begins -->
+    <section id="dmenu" class="row"></section>
+    <div id="check-out-division">
+      <hr class="visible-xs visible-md visible-lg" />
+      <a id="check-out-link" th:href="@{/sweetpeople/cart}">
+        <button
+          id="check-out-button"
+          type="button"
+          class="btn btn-primary mx-auto"
+        ></button>
+      </a>
     </div>
-
+    <br />
+    <div id="back-from-checkout">
+      <a id="back-from-checkout-link" th:href="@{/sweetpeople/sweets}">
+        <button
+          id="back-from-checkout-button"
+          type="button"
+          class="btn btn-primary mx-auto"
+        ></button>
+      </a>
+    </div>
     <!-- End of #Main Content -->
     <footer class="panel-footer">
       <div class="container">
@@ -190,9 +252,8 @@
           </section>
           <section id="address" class="col-sm-4">
             <span>Address:</span><br />
-            70, N Usman Rd, Postal Colony, <br />Parthasarathi Puram, T.
-            Nagar,<br />
-            Chennai-00017
+            70, N Usman Rd, Postal Colony, <br />Parthasarathi Puram, T. Nagar,
+            <br />Chennai-00017
             <p>
               * Delivery area within 5 Kms, with minimum order of Rs.200.
               Delivery charge may apply.
@@ -215,6 +276,7 @@
         </div>
       </div>
     </footer>
+
     <!--Java Script -->
     <!-- jQuery is needed for JS -->
     <script

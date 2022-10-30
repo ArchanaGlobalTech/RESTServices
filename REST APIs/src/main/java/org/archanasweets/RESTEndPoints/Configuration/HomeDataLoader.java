@@ -35,6 +35,7 @@ public class HomeDataLoader implements ApplicationListener<ApplicationReadyEvent
         homeData.setTileHeader1("Sweets");
         homeData.setTileHeader2("Savouries");
         homeData.setTileHeader3("Map");
+        homeData.setCategoryMessage("Availability of fruit based sweets and savouries are subject to the seasonality of ingredients");
 
         homeDataRepo.save(homeData);
     }

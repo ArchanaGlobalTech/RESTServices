@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width initial-scale=1" />
-    <title>Archana Sweets</title>
+    <title th:text="${metahome.titleText}"></title>
     <!-- CSS only -->
     <!-- Latest compiled and minified CSS -->
     <link
@@ -30,7 +30,7 @@
           <div class="navbar-header" id="navbar-header-id">
             <!--pull left is bootstrap way of saying float left. visible-md and visible-lg will ensure that the impage is visible only when the screen is not small-->
             <a
-              href="index.html"
+              th:href="@{/sweetpeople/home}"
               class="pull-left visible-md visible-lg visible-sm visible-xs"
               id="a-element-behind-logo"
             >
@@ -38,7 +38,7 @@
             </a>
             <div class="navbar-brand" id="nvbr01">
               <a
-                href="index.html"
+                th:href="@{/sweetpeople/home}"
                 class="pull-right visible-md visible-lg visible-xs visible-sm"
                 id="a-element-behind-brandname"
                 ><h1 th:text="${metahome.titleText}"></h1
@@ -67,7 +67,7 @@
             <!--nav navbar-nav ensures that the elements are part of nav bar. navbar-right aligns to the right-->
             <ul id="nav-list" class="nav navbar-nav navbar-right">
               <li>
-                <a href="sweet-categories.html">
+                <a th:href="@{/sweetpeople/sweets}">
                   <!--Glyficons are part of bootstrap https://getbootstrap.com/docs/3.4/components/#glyphicons-->
                   <span class="glyphicon glyphicon-cutlery"></span>
                   <!--THe class hidden-xs will hide the break element at xs size-->
@@ -76,14 +76,14 @@
                 >
               </li>
               <li>
-                <a href="about.html">
+                <a th:href="@{/sweetpeople/about}">
                   <span class="glyphicon glyphicon-info-sign"></span
                   ><br class="hidden-xs" />
                   About</a
                 >
               </li>
               <li>
-                <a href="cart.html">
+                <a th:href="@{/sweetpeople/cart}">
                   <span
                     id="nav-no-of-items-cart"
                     class="glyphicon glyphicon-shopping-cart"
@@ -147,13 +147,13 @@
       </div>
       <div id="home-tiles" class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <a href="sweet-categories.html"
+          <a th:href="@{/sweetpeople/sweets}"
             ><div id="menu-tile">
               <span th:text="${metahome.tileHeader1}"></span></div
           ></a>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <a href="savouries-categories.html"
+          <a th:href="@{/sweetpeople/savouries}"
             ><div id="specials-tile">
               <span th:text="${metahome.tileHeader2}"></span></div
           ></a>

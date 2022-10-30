@@ -18,4 +18,6 @@ public class HomeMetaData {
     private String tileHeader1;
     private String tileHeader2;
     private String tileHeader3;
+    private String categoryHeader;
+    private String categoryMessage;
 }

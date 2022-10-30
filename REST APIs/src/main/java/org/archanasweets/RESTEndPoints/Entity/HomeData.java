@@ -36,6 +36,10 @@ public class HomeData {
     private String tileHeader2;
     @Column(name = "tile_header_3")
     private String tileHeader3;
+    @Column(name = "category_header")
+    private String categoryHeader;
+    @Column(name = "category_message")
+    private String categoryMessage;
 
     public HomeData() {
     }
